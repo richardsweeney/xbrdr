@@ -5,8 +5,9 @@
 
 		<article>
 
-			<h1 class="blog-title">404 file not found</h1>
-
+      <header>
+			  <h1 class="blog-title">404 file not found</h1>
+      </header>
 			<p>Sorry, the file you were looking for couldn't be found.</p>
 
 		</article>

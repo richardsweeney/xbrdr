@@ -2,8 +2,8 @@
 <?php get_header(); ?>
 
 	<div class="left">
-	
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+	<?php while (have_posts()) : the_post(); ?>
 
 		<article>
 
@@ -13,7 +13,7 @@
 
 		</article>
 
-	<?php endwhile; endif; ?>
+	<?php endwhile; ?>
 
 	</div>
 
