@@ -16,3 +16,5 @@ sitemap.xml.gz
 readme.html
 license.txt
 .*DS_Store
+.sass-cache/*
+
