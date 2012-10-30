@@ -2,8 +2,8 @@
 
 add_theme_support('menus');
 add_theme_support('post-thumbnails');
-// add_image_size('post-excerpt', 300, 300, TRUE);
-// add_image_size('portfolio-image', 450, 225, TRUE);
+add_image_size('test-thumbnail', 360, 176, TRUE);
+
 
 /** Custom header function */
 $defaults = array(
@@ -121,19 +121,113 @@ add_action('wp_enqueue_scripts', 'rps_enqueue_js_and_css');
 
 
 /** Remove WP version from header */
- remove_action('wp_head', 'wp_generator');
- function blank_version() {
-    return '';
- }
- add_filter('the_generator','blank_version');
+remove_action('wp_head', 'wp_generator');
+function blank_version() {
+  return '';
+	}
+	add_filter('the_generator','blank_version');
+
+
+/** Tidy up the main navigation code */
+function rps_print_main_navigation() {
+	$defaults = array(
+		'menu'            => 'Primära Länkar',
+		'container'       => '',
+		'container_class' => '',
+		'container_id'    => '',
+		'menu_class'      => 'nav',
+		'menu_id'					=> '',
+		'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+		'depth'           => 0,
+	);
+	return wp_nav_menu($defaults);
+}
+
+
+/** Tidy up secondary main navigation code */
+function rps_get_secondary_navigation() {
+	$defaults = array(
+		'menu'            => 'Sekundära Länkar',
+		'container'       => '',
+		'container_class' => '',
+		'container_id'    => '',
+		'menu_class'      => 'nav nav-tabs rps-tabs',
+		'menu_id'					=> '',
+		'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+		'depth'           => 0
+	);
+	return wp_nav_menu($defaults);
+}
+
+
+/** Print secondary main navigation */
+function rps_print_secondary_navigation() {
+	global $post;
+ 	if ($post->post_parent != '') {
+     $parent_post = get_post($post->post_parent);
+    if ($parent_post->post_title == 'Om Oss') {
+    ?>
+    <nav>
+      <div id="nav-sidebar" class="row-fluid">
+        <div class="span12 padding-left">
+          <div class="row-fluid introtabs border">
+            <div class="tabs-naviation-container">
+              <?php rps_get_secondary_navigation(); ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <?php
+    }
+  }
+}
+
+
+/** Parallax navigation for landing page */
+function rps_print_parallax_navigation() {
+?>
+  <ul id="chapter-nav" class="meun">
+    <li data-depth="0"><a href="#chapter1" title="XP1 - pallen som har allt"><span>Pallen utan kompromisser</span></a></li>
+    <li data-depth="601"><a href="#chapter2" title="Unika egenskaper"><span>Unika egenskaper</span></a></li>
+    <li data-depth="1000"><a href="#chapter3" title="En l&ouml;nsam investering"><span>En l&ouml;nsam investering</span></a></li>
+    <li data-depth="1400"><a href="#chapter4" title="Pallen och m&auml;nniskan"><span>Pallen och m&auml;nniskan</span></a></li>
+    <li data-depth="1800"><a href="#chapter5" title="En h&aring;llbar framtid"><span>En h&aring;llbar framtid</span></a></li>
+    <li data-depth="2200"><a href="#chapter6" title="Prata med oss"><span>Prata med oss</span></a></li>
+  </ul>
+  <div id="news-bar">
+      <span>SENASTE NYTT:</span>
+      <a href="http://xbrdr.com/" title="Nu lanserar CrossBorder sin nya webbplats.">Nu lanserar CrossBorder sin nya webbplats.</a>
+  </div>
+<?php
+}
+
+
+/** Breadcrumb navigation */
+function rps_print_breadcrumbs() {
+	global $post;
+ 	if ($post->post_parent != '') {
+    $parent_post = get_post($post->post_parent);
+    $parentTitle = $parent_post->post_title;
+    $parentPermalink = get_permalink($parent_post->ID);
+		?>
+		<p class="breadcrumb-navigation">
+			<a href="<?php echo URL; ?>">xbrdr.com</a>
+			<img src="<?php echo IMG; ?>/breadcrumbs.jpg" />
+			<a href="<?php echo $parentPermalink; ?>"><?php echo $parentTitle; ?></a>
+			<img src="<?php echo IMG; ?>/breadcrumbs.jpg" />
+			<a class="active" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+		</p>
+		<?php
+	}
+}
 
 
 /** Include the custom post type class */
 include_once('includes/custom-post-type-class.php');
 
-/**
- * Create custom post type objects
- */
+
+/** Create custom post type objects */
 $cptArray = array(
 	'cptName' => 'product',
 	'singularName' => __('produkt', 'xbrdr'),
