@@ -15,13 +15,9 @@
 
 var mobile = (navigator.userAgent.match(/Android/i))||(navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i));
 
-if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-
-}
-
-$(function () {
+jQuery(function ($) {
   if (Modernizr.csstransitions === false) {
-    $('.hide').hide();
+    $('.gom').hide();
   }
   if (mobile === true || $(window).width() < 940) {
     $('#chapter1-text').addClass('loaded');
@@ -33,8 +29,9 @@ $(function () {
   $('#chapter6-map').hide();
 });
 
-$(window).load(function () {
-  var $window = $(window),
+jQuery(window).load(function () {
+  var $ = jQuery,
+      $window = $(window),
       $winHeight = $window.height(),
       increment = 35,
       throttle = 150,
@@ -49,10 +46,10 @@ $(window).load(function () {
       $c2Icons = $('.chapter2-icons-container ul'),
       $c3Icons = $('.chapter3-icons-container ul'),
       $c1Content = $('#chapter1-text, #unbuild li img'),
-      $c2Content = $('#chapter2-text, .chapter2-icons-container ul').addClass('hide'),
-      $c3Content = $('#chapter3-text, #chapter3-image, .chapter3-icons-container ul').addClass('hide'),
-      $c4Content = $('#chapter4-text, #chapter4-image, .chapter4-icons-container ul').addClass('hide'),
-      $c5Content = $('#chapter5-text, #chapter5-image, .chapter5-icons-container ul').addClass('hide'),
+      $c2Content = $('#chapter2-text, .chapter2-icons-container ul').addClass('gom'),
+      $c3Content = $('#chapter3-text, #chapter3-image, .chapter3-icons-container ul').addClass('gom'),
+      $c4Content = $('#chapter4-text, #chapter4-image, .chapter4-icons-container ul').addClass('gom'),
+      $c5Content = $('#chapter5-text, #chapter5-image, .chapter5-icons-container ul').addClass('gom'),
       $c6Content = $('#chapter6-text, #chapter6-map'),
       allContent = [$c1Content, $c2Content, $c3Content, $c4Content, $c5Content, $c6Content],
       allContentLength = allContent.length,
@@ -70,7 +67,7 @@ $(window).load(function () {
       iFrame = '<iframe id="maps-iframe" width="450" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Sj%C3%B6viksv%C3%A4gen+2+231+62+Trelleborg&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=48.50801,57.919922&amp;ie=UTF8&amp;hq=&amp;hnear=Sj%C3%B6viksv%C3%A4gen+2,+231+62+Trelleborg,+Sweden&amp;ll=55.379552,13.123617&amp;spn=0.008558,0.02105&amp;t=m&amp;z=14&amp;output=embed"></iframe>';
 
 	if (mobile || $window.outerWidth() < 940) {
-    $('.hide').removeClass('hide').addClass('show').show();
+    $('.hide').removeClass('gom').addClass('visa').show();
 
     var $icons = $('.icons li.unique').clone(),
         $mobileIconList = $('<ul id="mobile-icons-list" />');
@@ -90,7 +87,8 @@ $(window).load(function () {
       // Start the counter from one to make life easier
       for (i = 1; i < 18; i++) {
         var imgNo = (i < 10) ? '0' + i : i,
-            $li = $('<li><img class="sequence-img hide" id="img-' + i + '" src="images/' + imgNo + '.jpg" /></li>');
+            $li = $('<li><img class="sequence-img gom" id="img-' + i + '" src="' + jsGlobals.templateDirectory +
+              '/images/sequence/' + imgNo + '.jpg" /></li>');
         $parallaxImageContainer.append($li);
         if (i === 17) {
           $lastPall = $('#img-17').load( function () {
@@ -118,9 +116,9 @@ $(window).load(function () {
         $chapterNavLi.eq(0).parent().addClass('current');
         scrollPhase = lastChapter = 1;
         $scrollArrow.show();
-        $c2Content.add($c3Content).add($c4Content).add($c5Content).add($c6Content).removeClass('show').addClass('hide');
+        $c2Content.add($c3Content).add($c4Content).add($c5Content).add($c6Content).removeClass('visa').addClass('gom');
         $c2Text.add($c3Text).add($c4Text).add($c5Text).add($c6Text).animate({ 'opacity': 0 }, 100);
-        $c1Text.removeClass('hide').addClass('show').animate({ 'opacity' : 1, 'top': 150 }, 400);
+        $c1Text.removeClass('gom').addClass('visa').animate({ 'opacity' : 1, 'top': 150 }, 400);
         if (Modernizr.csstransitions === false) {
           $c2Content.add($c3Content).add($c4Content).add($c5Content).add($c6Content).hide();
           $c1Text.show();
@@ -128,17 +126,17 @@ $(window).load(function () {
         }
         thisPhase = phase = (phase < 0) ? 0 : phase;
         if (firstLoad === true) {
-          $('img#img-' + thisPhase).removeClass('hide').addClass('show');
+          $('img#img-' + thisPhase).removeClass('gom').addClass('visa');
           if (Modernizr.csstransitions === false) {
             $('img#img-' + thisPhase).fadeIn(300);
           }
         } else {
           if (lastPhase !== phase) {
-            $slideshowImages.removeClass('show').addClass('hide');
+            $slideshowImages.removeClass('visa').addClass('gom');
             if (direction === 'up') {
               thisPhase = (phase > 1) ? (phase - 1) : 0;
             }
-            $('img#img-' + thisPhase).removeClass('hide').addClass('show');
+            $('img#img-' + thisPhase).removeClass('gom').addClass('visa');
             if (Modernizr.csstransitions === false) {
               $slideshowImages.hide();
               $('img#img-' + thisPhase).show();
@@ -148,7 +146,7 @@ $(window).load(function () {
           }
         }
       } else {
-        $slideshowImages.removeClass('show').addClass('hide');
+        $slideshowImages.removeClass('visa').addClass('gom');
         if (Modernizr.csstransitions === false) {
           $slideshowImages.hide();
         }
@@ -166,7 +164,7 @@ $(window).load(function () {
           chapter = 6;
         }
         if (chapter === 2 ) {
-          $lastPall.addClass('show').removeClass('hide');
+          $lastPall.addClass('visa').removeClass('gom');
           if (Modernizr.csstransitions === false) {
             $lastPall.show();
           }
@@ -201,12 +199,12 @@ $(window).load(function () {
             $mapCanvas.fadeOut(200);
           }
 
-          // allContent[i].removeClass('hide').addClass('show');
-          $('#chapter' + j + '-image, .chapter' + j + '-icons-container ul').removeClass('hide').addClass('show');
+          // allContent[i].removeClass('gom').addClass('visa');
+          $('#chapter' + j + '-image, .chapter' + j + '-icons-container ul').removeClass('gom').addClass('visa');
           if (j === 6) {
             $text
-              .removeClass('hide')
-              .addClass('show')
+              .removeClass('gom')
+              .addClass('visa')
               .css({ 'top': 1500, 'opacity': 0 })
               .animate({ 'top': topPosition, 'opacity': 1 }, 500);
             if (iFrameLoaded === false) {
@@ -217,8 +215,8 @@ $(window).load(function () {
             }
           } else {
             $text
-              .removeClass('hide')
-              .addClass('show')
+              .removeClass('gom')
+              .addClass('visa')
               .css({ 'top': 1500, 'opacity': 0 })
               .delay(500)
               .animate({ 'top': topPosition, 'opacity': 1 }, 500);
@@ -228,11 +226,11 @@ $(window).load(function () {
             $text.show();
           }
         } else {
-          $('#chapter' + j + '-image, .chapter' + j + '-icons-container ul').removeClass('show').addClass('hide');
-          $text.removeClass('show').addClass('hide').stop(true, true).animate({ 'top': -500, 'opacity': 0 }, 300);
+          $('#chapter' + j + '-image, .chapter' + j + '-icons-container ul').removeClass('visa').addClass('gom');
+          $text.removeClass('show').addClass('gom').stop(true, true).animate({ 'top': -500, 'opacity': 0 }, 300);
           $mapCanvas.fadeOut();
           if (Modernizr.csstransitions === false) {
-            $('#chapter' + j + '-image, .chapter' + j + '-icons-container ul').fadeOut('show');
+            $('#chapter' + j + '-image, .chapter' + j + '-icons-container ul').fadeOut('slow');
             $text.hide();
           }
         }
@@ -245,8 +243,8 @@ $(window).load(function () {
       $("html, body").animate({ scrollTop: depth }, 300, function () {
         $window.bind('scroll', $.throttle(throttle, true, scrollFadeOutFirstPhase)).trigger('scroll');
         if (depth === 0) {
-          $slideshowImages.removeClass('show').addClass('hide');
-          $('img#img-0').removeClass('hide').addClass('show');
+          $slideshowImages.removeClass('visa').addClass('gom');
+          $('img#img-0').removeClass('gom').addClass('visa');
         }
       });
       return false;
