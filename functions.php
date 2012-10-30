@@ -308,7 +308,7 @@ function rps_add_meta_boxes() {
 		'produkt-meta',
 		__('Produkt Meta', 'xbrdr'),
 		'rps_print_produkt_meta',
-		'produkt',
+		'product',
 		'normal',
 		'high'
 	);
@@ -402,6 +402,19 @@ function rps_save_custom_meta() {
 }
 add_action('save_post', 'rps_save_custom_meta');
 
+
+/** Get product information for respective products */
+function rps_get_product_information() {
+	global $post;
+	switch($post->post_title) {
+		case 'XP1':
+			get_template_part('includes/xp1');
+			break;
+		case 'XS1':
+			get_template_part('includes/xs1');
+			break;
+	}
+}
 
 /** Footer Widget - show a language switcher in the header */
 // class Logo_Widget extends WP_Widget {
