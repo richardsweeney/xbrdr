@@ -7,14 +7,14 @@ add_image_size('test-thumbnail', 360, 176, TRUE);
 
 /** Custom header function */
 $defaults = array(
-	'width'                  => false,
-	'height'         				 => false,
-	'default-image'					 => get_bloginfo('template_directory') . '/images/logotype.png',
-	'random-default' 				 => false,
-	'flex-height'            => false,
-	'flex-width'             => false,
-	'header-text'            => false,
-	'uploads'                => true
+	'width'           => false,
+	'height'         	=> false,
+	'default-image'		=> get_bloginfo('template_directory') . '/images/logotype.png',
+	'random-default'	=> false,
+	'flex-height'     => false,
+	'flex-width'      => false,
+	'header-text'     => false,
+	'uploads'         => true
 );
 add_theme_support('custom-header', $defaults);
 
@@ -139,8 +139,57 @@ function rps_print_main_navigation() {
 		'menu_id'					=> '',
 		'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 		'depth'           => 0,
+		'walker'     => new rps_nav_walker(),
 	);
 	return wp_nav_menu($defaults);
+}
+
+/** Custom navigation function to add active classes to stuff */
+class rps_nav_walker extends Walker_Nav_Menu {
+  function start_el(&$output, $item, $depth, $args) {
+		global $wp_query, $post;
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+		$class_names = $value = '';
+
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes[] = 'menu-item-' . $item->ID;
+
+		if ($post->post_type == 'product' && $item->post_name == 'produkter') {
+			$classes[] = 'child-page';
+		}
+		else if ($item->post_name == 'om-oss' && !empty($post->ancestors)) {
+			$p = get_post($post->ancestors[0]);
+			if($p->post_name == 'om-oss') {
+				$classes[] = 'child-page';
+			}
+		}
+		// This page just gets an id as post_name...
+		else if ($post->post_type == 'test' && strtolower($item->post_title) == 'testcenter'){
+			$classes[] = 'child-page';
+		}
+
+		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+		$output .= $indent . '<li' . $id . $value . $class_names .'>';
+
+		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+
+		$item_output = $args->before;
+		$item_output .= '<a'. $attributes .'>';
+		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+		$item_output .= '</a>';
+		$item_output .= $args->after;
+
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
 }
 
 
@@ -154,32 +203,75 @@ function rps_get_secondary_navigation() {
 		'menu_class'      => 'nav nav-tabs rps-tabs',
 		'menu_id'					=> '',
 		'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-		'depth'           => 0
+		'depth'           => 0,
+		'echo'						=> false,
+		'walker'     => new rps_nav_two_walker(),
 	);
 	return wp_nav_menu($defaults);
+}
+
+/** Custom navigation function to add active classes to stuff */
+class rps_nav_two_walker extends Walker_Nav_Menu {
+  function start_el(&$output, $item, $depth, $args) {
+		global $wp_query, $post;
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+		$class_names = $value = '';
+
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes[] = 'menu-item-' . $item->ID;
+
+		d($item);
+
+		if ($post->post_type == 'post' && strtolower($item->title) == 'press') {
+			$classes[] = 'child-page';
+		}
+
+		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+		$output .= $indent . '<li' . $id . $value . $class_names .'>';
+
+		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+
+		$item_output = $args->before;
+		$item_output .= '<a'. $attributes .'>';
+		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+		$item_output .= '</a>';
+		$item_output .= $args->after;
+
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
 }
 
 
 /** Print secondary main navigation */
 function rps_print_secondary_navigation() {
 	global $post;
- 	if ($post->post_parent != '') {
-     $parent_post = get_post($post->post_parent);
-    if ($parent_post->post_title == 'Om Oss') {
-    ?>
-    <nav>
+	$markup = '<nav>
       <div id="nav-sidebar" class="row-fluid">
-        <div class="span12 padding-left">
+        <div class="span12">
           <div class="row-fluid introtabs border">
-            <div class="tabs-naviation-container">
-              <?php rps_get_secondary_navigation(); ?>
-            </div>
+            <div class="tabs-naviation-container">';
+  $markup .= rps_get_secondary_navigation();
+  $markup .= '</div>
           </div>
         </div>
       </div>
-    </nav>
-    <?php
+    </nav>';
+ 	if ($post->post_parent != '') {
+    $parent_post = get_post($post->post_parent);
+    if ($parent_post->post_title == 'Om Oss') {
+    	echo $markup;
     }
+  } elseif ($post->post_type == 'post') {
+  	echo $markup;
   }
 }
 
