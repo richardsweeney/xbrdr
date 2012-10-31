@@ -290,7 +290,13 @@ function rps_print_parallax_navigation() {
   </ul>
   <div id="news-bar">
       <span>SENASTE NYTT:</span>
-      <a href="http://xbrdr.com/" title="Nu lanserar CrossBorder sin nya webbplats.">Nu lanserar CrossBorder sin nya webbplats.</a>
+      <?php
+      	$args = array('post_type' => 'post', 'posts_per_page' => 1);
+      	$latest = new WP_Query($args);
+      	while ($latest->have_posts()): $latest->the_post();
+      ?>
+      	<a href="<?php esc_attr(the_permalink()); ?>" ><?php echo the_title(); ?>.</a>
+      <?php endwhile; wp_reset_query(); ?>
   </div>
 <?php
 }
