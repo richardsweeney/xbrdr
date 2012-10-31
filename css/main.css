@@ -20,7 +20,8 @@
   border-radius: 50%;
   behavior: url("PIE.htc");
 }
-#main-menu a:hover, #main-menu li.active a{text-shadow: 0px 1px 1px #4d781b;}
+
+
 #news-bar a, #news-bar span{text-shadow: 0px 1px 1px #9397a0;}
 
 .read-more{
@@ -57,7 +58,7 @@
 #chapter-nav a:hover, #chapter-nav li.current a{background:#adb8cd;}
 #chapter-nav a:hover span, #chapter-nav li.current a span{display:block;}
 
-#news-bar{position:absolute; background:#ced5e1 url(../images/news-bg.gif) repeat-x 0 0; font-weight:bold; line-height:17px; color:#fff; padding:7px 11px 4px; top:91px; left:0;}
+#news-bar{position:absolute; background:#ced5e1 url(../images/news-bg.gif) repeat-x 0 0; font-weight:bold; line-height:17px; color:#fff; padding:7px 11px 4px; top:90px; left:20px;}
 #news-bar span{float:left; font-size:10px; line-height:20px; padding:0 6px 0 0;}
 #news-bar a{float:left; color:#fff; padding:0 25px 3px 0; background:url(../images/news-arrow.png) no-repeat 99.3% 50%;}
 #news-bar a:hover{text-decoration:underline; background-position:100% 50%;}
