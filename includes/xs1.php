@@ -190,6 +190,5 @@
                     </p>
                   </div>
                 </div>
-                <a href="#" title=""><img src="<?php echo IMG; ?>/floating-arrow.png" alt="" /></a>
               </div>
             </div>

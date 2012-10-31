@@ -1,6 +1,4 @@
 
-      <section>
-        <a name="fordelar"></a>
         <div class="row-fluid egenskaper">
           <div class="span12">
             <div class="row-fluid spaceme">
@@ -217,151 +215,127 @@
                 </p>
               </div>
             </div>
-            <a href="#" title=""><img src="<?php echo IMG; ?>/floating-arrow.png" alt="" /></a>
           </div>
         </div>
       </section>
-      <div class="row-fluid">
-        <div class="span12">
-          <br>
-          <br>
-          <br>
-          <p>
-            <!-- AddThis Button BEGIN -->
-            <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=xa-506d562f0fcc2f96"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
-            <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-506d562f0fcc2f96"></script>
-            <!-- AddThis Button END -->
-          </p>
+
+
+      <!-- Spec tab -->
+      <section id="spec">
+        <div class="tab-pane row-fluid spaceme">
+          <div class="row-fluid span12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><h3>XP1 Helpall (EUR)</h3></th>
+                  <th><h3>XP1 Halvpall (EUR)</h3></th>
+                  <th><h3>XP1 Helpall (USA)</h3></th>
+                  <th><h3>XP1 Halvpall (USA)</h3></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><h3>Längd</h3></td>
+                  <td><h4>1200 mm</h4></td>
+                  <td><h4>800 mm</h4></td>
+                  <td><h4>1225 mm</h4></td>
+                  <td><h4>820 mm</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Bredd</h3></td>
+                  <td><h4>800 mm</h4></td>
+                  <td><h4>600 mm</h4></td>
+                  <td><h4>820 mm</h4></td>
+                  <td><h4>615 mm</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Höjd</h3></td>
+                  <td><h4>110,5 mm</h4></td>
+                  <td><h4>110,5 mm</h4></td>
+                  <td><h4>110,5 mm</h4></td>
+                  <td><h4>110,5 mm</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Vikt</h3></td>
+                  <td><h4>14 - 20 kg*</h4></td>
+                  <td><h4></h4></td>
+                  <td><h4>14 - 20 kg*</h4></td>
+                  <td><h4></h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Lastkapacitet
+                  <br />
+                  Statisk belastning</h3></td>
+                  <td><h4>5500 kg**</h4></td>
+                  <td><h4>5500 kg**</h4></td>
+                  <td><h4>5500 kg**</h4></td>
+                  <td><h4>5500 kg**</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Lastkapacitet
+                  <br />
+                  Dynamisk belastning</h3></td>
+                  <td><h4>1500 kg**</h4></td>
+                  <td><h4>1500 kg**</h4></td>
+                  <td><h4>1500 kg**</h4></td>
+                  <td><h4>1500 kg**</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Lastkapacitet
+                  <br />
+                  Pallställ/stallage</h3></td>
+                  <td><h4>1500 kg**</h4></td>
+                  <td><h4>1500 kg**</h4></td>
+                  <td><h4>1500 kg**</h4></td>
+                  <td><h4>1500 kg**</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Tillbehör - 2 medar</h3></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Tillbehör - 3 medar</h3></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Tillbehör - 100 mm mede</h3></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Tillbehör - 145 mm mede</h3></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Skyddsplatta</h3></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                </tr>
+                <tr>
+                  <td><h3>Ändkåpa</h3></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                  <td><h4>Ja</h4></td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>* Beroende på tillval</h3>
+            <h3>** Lastkapaciteten angiven här är på en pall med tre medar, skyddsplatta och ändkåpa</h3>
+          </div>
         </div>
-      </div>
-      <footer>
-        <p>
-          Copyright © 2012 CrossBorder Technologies AB
-        </p>
-        <p>
-          Address: Sjöviksvägen 2, 231 62 Trelleborg, Sweden   |   Phone: +46 410 35 35 90   |   Email: <a href="mailto:info@xbrdr.com">info@xbrdr.com</a>
-        </p>
-      </footer>
-    </div>
-    <!-- Spec tab -->
-    <div class="tab-pane" id="spec">
-      <div class="row-fluid spaceme">
-        <div class="span12">
-        </div>
-      </div>
-      <div class="row-fluid">
-        <div class="span12">
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th><h3>XP1 Helpall (EUR)</h3></th>
-                <th><h3>XP1 Halvpall (EUR)</h3></th>
-                <th><h3>XP1 Helpall (USA)</h3></th>
-                <th><h3>XP1 Halvpall (USA)</h3></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><h3>Längd</h3></td>
-                <td><h4>1200 mm</h4></td>
-                <td><h4>800 mm</h4></td>
-                <td><h4>1225 mm</h4></td>
-                <td><h4>820 mm</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Bredd</h3></td>
-                <td><h4>800 mm</h4></td>
-                <td><h4>600 mm</h4></td>
-                <td><h4>820 mm</h4></td>
-                <td><h4>615 mm</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Höjd</h3></td>
-                <td><h4>110,5 mm</h4></td>
-                <td><h4>110,5 mm</h4></td>
-                <td><h4>110,5 mm</h4></td>
-                <td><h4>110,5 mm</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Vikt</h3></td>
-                <td><h4>14 - 20 kg*</h4></td>
-                <td><h4></h4></td>
-                <td><h4>14 - 20 kg*</h4></td>
-                <td><h4></h4></td>
-              </tr>
-              <tr>
-                <td><h3>Lastkapacitet
-                <br />
-                Statisk belastning</h3></td>
-                <td><h4>5500 kg**</h4></td>
-                <td><h4>5500 kg**</h4></td>
-                <td><h4>5500 kg**</h4></td>
-                <td><h4>5500 kg**</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Lastkapacitet
-                <br />
-                Dynamisk belastning</h3></td>
-                <td><h4>1500 kg**</h4></td>
-                <td><h4>1500 kg**</h4></td>
-                <td><h4>1500 kg**</h4></td>
-                <td><h4>1500 kg**</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Lastkapacitet
-                <br />
-                Pallställ/stallage</h3></td>
-                <td><h4>1500 kg**</h4></td>
-                <td><h4>1500 kg**</h4></td>
-                <td><h4>1500 kg**</h4></td>
-                <td><h4>1500 kg**</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Tillbehör - 2 medar</h3></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Tillbehör - 3 medar</h3></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Tillbehör - 100 mm mede</h3></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Tillbehör - 145 mm mede</h3></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Skyddsplatta</h3></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-              </tr>
-              <tr>
-                <td><h3>Ändkåpa</h3></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-                <td><h4>Ja</h4></td>
-              </tr>
-            </tbody>
-          </table>
-          <h3>* Beroende på tillval</h3>
-          <h3>** Lastkapaciteten angiven här är på en pall med tre medar, skyddsplatta och ändkåpa</h3>
-        </div>
-      </div>
+      </section>
