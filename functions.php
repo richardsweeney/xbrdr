@@ -682,45 +682,44 @@ function get_repeater_field_images() {
 
 
 
-/* Nicer excerpt */
-if (!function_exists('rps_nicer_excerpt')) {
-	function rps_nicer_excerpt($args = array()) {
-		global $post;
-		$defaults = array(
-			'echo' => true,
-			'words' => 28,
-			'ellipsis' => '&hellip;',
-			'link' => true,
-			'linkClass' => 'read-more-link',
-			'linkText' => __('Läs hela inlägg', 'xbrdr'),
-			'linkContainer' => 'p',
-			'allowedTags' => '<p><a><i><em><b><strong><ul><ol><li><span><blockquote>'
-		);
-		$args = wp_parse_args( $args, $defaults );
-    $text = trim( strip_tags( $post->post_content, $args['allowedTags'] ) );
-		$text = preg_replace( '/(?:(?:\r\n|\r|\n)\s*){2}/s', ' ', $text );
-    $text = explode( ' ', $text );
-    $numWords = count( $text );
-    if( $numWords > $args['words'] ) {
-		  array_splice( $text, $args['words'] );
-		  $text = implode( ' ', $text );
-		  if( $args['ellipsis'] != false ) {
-			  $text .= $args['ellipsis'];
-			}
-		} else {
-		  $text = implode( ' ', $text );
+/* My nicer excerpt function */
+function rps_nicer_excerpt($args = array()) {
+	global $post;
+	$defaults = array(
+		'echo' => true,
+		'words' => 28,
+		'ellipsis' => '&hellip;',
+		'link' => true,
+		'linkClass' => 'read-more-link',
+		'linkText' => __('Läs hela inlägg', 'xbrdr'),
+		'linkContainer' => 'p',
+		'allowedTags' => '<p><a><i><em><b><strong><ul><ol><li><span><blockquote>'
+	);
+	$args = wp_parse_args( $args, $defaults );
+  $text = trim( strip_tags( $post->post_content, $args['allowedTags'] ) );
+	$text = preg_replace( '/(?:(?:\r\n|\r|\n)\s*){2}/s', ' ', $text );
+  $text = explode( ' ', $text );
+  $numWords = count( $text );
+  if( $numWords > $args['words'] ) {
+	  array_splice( $text, $args['words'] );
+	  $text = implode( ' ', $text );
+	  if( $args['ellipsis'] != false ) {
+		  $text .= $args['ellipsis'];
 		}
-		$text = force_balance_tags( $text );
-	  if( $numWords > $args['words'] && $args['link'] == true ) {
-	  	$text .= '<' . $args['linkContainer'] . ' class="' . $args['linkClass'] . '"><a href="' . get_permalink( $post->ID ) .  '" title="' . get_the_title( $post->ID ) . '">' . $args['linkText'] . '</a></' . $args['linkContainer'] . '>';
-		}
-		if( $args['echo'] ) {
-	 		echo apply_filters('the_content', $text);
-	 	} else {
-	 		return apply_filters('the_content', $text);
-	 	}
+	} else {
+	  $text = implode( ' ', $text );
 	}
+	$text = force_balance_tags( $text );
+  if( $numWords > $args['words'] && $args['link'] == true ) {
+  	$text .= '<' . $args['linkContainer'] . ' class="' . $args['linkClass'] . '"><a href="' . get_permalink( $post->ID ) .  '" title="' . get_the_title( $post->ID ) . '">' . $args['linkText'] . '</a></' . $args['linkContainer'] . '>';
+	}
+	if( $args['echo'] ) {
+ 		echo apply_filters('the_content', $text);
+ 	} else {
+ 		return apply_filters('the_content', $text);
+ 	}
 }
+
 
 
 /** Change crop point for cropped images */
