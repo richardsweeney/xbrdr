@@ -6,7 +6,7 @@
       <div class="span12">
         <div class="row-fluid introtabs">
           <div class="span3">
-            <h1>Produkter</h1>
+            <h1><?php the_title(); ?></h1>
           </div>
           <div class="span6 offset3">
 

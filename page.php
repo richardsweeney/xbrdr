@@ -30,4 +30,9 @@
   <?php endif; ?>
 
 <?php endwhile; ?>
+<?php
+  if(is_page('detta-ar-crossborder')):
+    get_repeater_field_images();
+  endif;
+ ?>
 <?php get_footer(); ?>

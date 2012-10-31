@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="row-fluid spaceme left-margin-imgs">
+  <div class="row-fluid spaceme">
 
   <?php
     endwhile; wp_reset_query();
@@ -30,7 +30,7 @@
       $excerpt = get_post_meta($post->ID, '_test-excerpt', true);
     ?>
       <div class="span6 testbox">
-        <div class="thumbnail">
+        <div class="image-border-container">
           <a href="<?php the_permalink(); ?>">
             <img class="image-border" src="<?php echo $image[0]; ?>" alt="<?php esc_attr(the_title()); ?>" />
           </a>

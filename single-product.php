@@ -7,7 +7,7 @@
       <div class="span12">
         <div class="row-fluid introtabs">
           <div class="span3">
-            <h1>Produkter</h1>
+            <h1><?php _e('Produkter', 'xbrdr'); ?></h1>
           </div>
           <div class="span6 offset3">
           </div>
@@ -31,8 +31,9 @@
 
       <div class="<?php echo $class; ?>">
         <div class="box-shadow">
+          <img src="<?php the_field('field_name'); ?>" alt="" />
           <!-- ok; What. The. FUCK?! Inline style element?!! This is to get the images to vertically align (sorry, sorry, sorry). -->
-          <a href="<?php the_permalink(); ?>" title="<?php esc_attr(the_title()); ?>" style="background: url('<?php echo $image[0]; ?>') no-repeat center center">
+          <a href="<?php the_permalink(); ?>" title="<?php esc_attr(the_title()); ?>" style="background: url('<?php the_field('extra_bild'); ?>') no-repeat center center">
           </a>
         </div>
         <a href="<?php the_permalink(); ?>" title="<?php esc_attr(the_title()); ?>">
@@ -42,8 +43,7 @@
       </div>
 
       <?php
-        endwhile;
-        wp_reset_query();
+        endwhile; wp_reset_query();
         //Main loop
         while(have_posts()): the_post();
       ?>
@@ -54,16 +54,16 @@
   <!-- Tabs -->
   <div class="row-fluid introtabs producttabs">
     <div class="span12">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs product-tab">
         <?php if($post->post_title == 'XP1'): ?>
-          <li>
-            <a href="#spec" title="" data-toggle="tab">Specifikation</a>
+          <li class="js">
+            <a href="#spec" title="" data-id="spec" data-toggle="tab">Specifikation</a>
           </li>
-          <li class="active">
-            <a href="#fordelar" title="" data-toggle="tab">Fördelar</a>
+          <li class="js active">
+            <a href="#fordelar" title="" data-id="fordelar" data-toggle="tab">Fördelar</a>
           </li>
         <?php else: ?>
-          <li class="active">
+          <li class="active padd-right">
             <a href="#fordelar" title="" data-toggle="tab">Fördelar</a>
           </li>
         <?php endif; ?>
@@ -72,10 +72,9 @@
   </div>
   <!-- tabs -->
 
-  <div class="tab-content no-float">
-    <!-- fordelar tab -->
-    <div class="tab-pane active" id="fordelar">
-
+  <div class="tab-content no-float show-hide-container">
+  <!-- fordelar tab -->
+    <section id="fordelar">
       <div class="row-fluid tab-previews product-row">
         <div class="span12">
           <br>
@@ -92,6 +91,8 @@
       </div>
 
       <?php rps_get_product_information(); ?>
+
+    </div>
 
     <?php endwhile; ?>
 
