@@ -1,4 +1,5 @@
 <div class="members-container">
+  <h1><?php _e('Styrelse', 'xbrdr'); ?></h1>
   <div class="row-fluid">
   <?php
     $args = array('post_type' => 'commitee_member', 'posts_per_page' => -1);
