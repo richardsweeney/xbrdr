@@ -41,14 +41,15 @@ function rps_register_widget_areas() {
 	    'before_title' => '<div class="title">',
 	    'after_title' => '</div>'
 		)
-	);  register_sidebar(
+	);
+	register_sidebar(
   	array(
 			'name' => __('Press Sida Widget', 'xbrdr'),
 			'id' => 'rps-press-widget',
 	    'before_widget' => '',
 	    'after_widget' => '',
-	    'before_title' => '<div class="title">',
-	    'after_title' => '</div>'
+	    'before_title' => '<strong>',
+	    'after_title' => '</strong>'
 		)
 	);
 }
