@@ -313,7 +313,7 @@ function rps_print_breadcrumbs() {
 		<p class="breadcrumb-navigation">
 			<a href="<?php echo URL; ?>">xbrdr.com</a>
 			<img src="<?php echo IMG; ?>/breadcrumbs.jpg" />
-			<a href="<?php echo $parentPermalink; ?>"><?php echo $parentTitle; ?></a>
+			<a href="<?php echo $parentPermalink; ?>/detta-ar-crossborder/"><?php echo $parentTitle; ?></a>
 			<img src="<?php echo IMG; ?>/breadcrumbs.jpg" />
 			<a class="active" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 		</p>
@@ -323,15 +323,14 @@ function rps_print_breadcrumbs() {
 
 
 /** Include the custom post type class */
-include_once('includes/custom-post-type-class.php');
-
+include_once('includes/Custom-post-type-class.php');
 
 /** Create custom post type objects */
 $cptArray = array(
 	'cptName' => 'product',
 	'singularName' => __('produkt', 'xbrdr'),
 	'pluralName' => __('produkter', 'xbrdr'),
-	'slug' => 'produkter'
+	'slug' => 'produkter',
 );
 $products = new RPS_CreateCustomPostType($cptArray);
 add_action('init', array(&$products, 'createPostType'));
@@ -341,7 +340,7 @@ $cptArray = array(
 	'cptName' => 'test',
 	'singularName' => __('test', 'xbrdr'),
 	'pluralName' => __('tester', 'xbrdr'),
-	'slug' => 'tester'
+	'slug' => 'tester',
 );
 $tests = new RPS_CreateCustomPostType($cptArray);
 add_action('init', array(&$tests, 'createPostType'));
@@ -351,7 +350,8 @@ $cptArray = array(
 	'cptName' => 'commitee_member',
 	'singularName' => __('styrelsemedlem', 'xbrdr'),
 	'pluralName' => __('styrelsemedlemmar', 'xbrdr'),
-	'slug' => 'styrelse'
+	'slug' => 'styrelse',
+	'menuName' => 'styrelsen',
 );
 $commitee = new RPS_CreateCustomPostType($cptArray);
 add_action('init', array(&$commitee, 'createPostType'));
@@ -370,14 +370,14 @@ add_action('init', array(&$owner, 'createPostType'));
 
 $cptArray = null;
 $cptArray = array(
-	'cptName' => 'press_release',
-	'singularName' => __('Press Release', 'xbrdr'),
-	'pluralName' => __('Press Releases', 'xbrdr'),
-	'slug' => 'press-release'
+	'cptName' => 'contact',
+	'singularName' => __('Kontakt', 'xbrdr'),
+	'pluralName' => __('Kontakter', 'xbrdr'),
+	'slug' => 'kontakt-person',
+	'supports' => array('title'),
 );
-$press = new RPS_CreateCustomPostType($cptArray);
-add_action('init', array(&$press, 'createPostType'));
-
+$contacts = new RPS_CreateCustomPostTypeWithTaxonomy($cptArray);
+add_action('init', array(&$contacts, 'createPostType'));
 
 
 /** Change the text of 'Enter title here' for Commitee members */
@@ -388,6 +388,7 @@ function rps_change_default_title($title) {
   		$title = __('Ange testens namn', 'xbrdr');
   		break;
   	case 'commitee_member':
+  	case 'contact':
     	$title = __('Namn', 'xbrdr');
     	break;
     case 'owner':
@@ -403,6 +404,7 @@ add_filter('enter_title_here', 'rps_change_default_title');
  * Register meta boxes
  */
 function rps_add_meta_boxes() {
+	global $post;
 	add_meta_box(
 		'produkt-meta',
 		__('Produkt Meta', 'xbrdr'),
@@ -427,21 +429,37 @@ function rps_add_meta_boxes() {
 		'normal',
 		'high'
 	);
+	add_meta_box(
+		'contact-meta',
+		__('Kontakt Meta', 'xbrdr'),
+		'rps_print_contact_meta',
+		'contact',
+		'normal',
+		'high'
+	);
+	if ($post->post_name === 'kontakt') {
+		add_meta_box(
+			'contact-meta',
+			__('Kontakt Meta', 'xbrdr'),
+			'rps_print_contact_page_meta',
+			'page',
+			'normal',
+			'high'
+		);
+	}
 }
 add_action('add_meta_boxes', 'rps_add_meta_boxes');
 
 
-/**
- * Add extra meta to custom post types
- */
+/** Add extra meta to custom post types */
 function rps_print_produkt_meta() {
 	global $post;
 	$subheader = get_post_meta($post->ID, '_produkt-subheader', true);
 	$excerpt = get_post_meta($post->ID, '_produkt-excerpt', true);
  	?>
- 	<input type="text" class="produkt-subheader" name="produkt-subheader" placeholder="<?php esc_attr_e('Ange en underrubrik', 'xbrdr'); ?>" value="<?php echo esc_attr($subheader); ?>" />
+ 	<input type="text" class="rps produkt-subheader" name="produkt-subheader" placeholder="<?php esc_attr_e('Ange en underrubrik', 'xbrdr'); ?>" value="<?php echo esc_attr($subheader); ?>" />
  	<label for="produkt-excerpt"><?php _e('Lägg till ett utdrag till produkten som visas ut på alla produkt sidor', 'xbrdr'); ?></label>
- 		<textarea class="produkt-excerpt" name="produkt-excerpt"><?php echo $excerpt; ?></textarea>
+ 		<textarea class="rps produkt-excerpt" name="produkt-excerpt"><?php echo $excerpt; ?></textarea>
 	<?php
 }
 
@@ -451,7 +469,7 @@ function rps_print_test_meta() {
 	$excerpt = get_post_meta($post->ID, '_test-excerpt', true);
  	?>
  	<label for="test-excerpt"><?php _e('Lägg till ett utdrag till testen som visas ut på alla testcenter sidan', 'xbrdr'); ?></label>
- 		<textarea class="test-excerpt" name="test-excerpt"><?php echo $excerpt; ?></textarea>
+ 		<textarea class="rps test-excerpt" name="test-excerpt"><?php echo $excerpt; ?></textarea>
 	<?php
 }
 
@@ -462,9 +480,38 @@ function rps_print_styrelse_meta() {
 	$role = get_post_meta($post->ID, '_commitee-role', true);
  	?>
  	<label for="commitee-dob"><?php _e('Födelseår', 'xbrdr'); ?>:</label>
- 		<input type="number" class="commitee-dob" name="commitee-dob" value="<?php echo esc_attr($dob); ?>">
+ 		<input type="number" class="rps commitee-dob" name="commitee-dob" value="<?php echo esc_attr($dob); ?>">
  	<label for="commitee-role"><?php _e('Roll', 'xbrdr'); ?>:</label>
- 		<input type="text" class="commitee-role" name="commitee-role" value="<?php echo esc_attr($role); ?>">
+ 		<input type="text" class="rps commitee-role" name="commitee-role" value="<?php echo esc_attr($role); ?>">
+	<?php
+}
+
+
+function rps_print_contact_meta() {
+	global $post;
+	$tel = get_post_meta($post->ID, '_contact-tel', true);
+	$email = get_post_meta($post->ID, '_contact-email', true);
+	$role = get_post_meta($post->ID, '_contact-role', true);
+	?>
+	<label for="contact-tel"><?php _e('Kontakt Telefon', 'xbrdr'); ?></label>
+		<input type="tel" class="rps contact-tel" name="contact-tel" value="<?php echo esc_attr($tel); ?>" />
+	<label for="contact-email"><?php _e('Kontakt Epost', 'xbrdr'); ?></label>
+		<input type="email" class="rps contact-email" name="contact-email" value="<?php echo esc_attr($email); ?>" />
+	<label for="contact-role"><?php _e('Kontakt Roll', 'xbrdr'); ?></label>
+		<input type="email" class="rps contact-role" name="contact-role" value="<?php echo esc_attr($role); ?>" />
+	<?php
+}
+
+
+function rps_print_contact_page_meta() {
+	global $post;
+	$tel = get_post_meta($post->ID, '_contact-tel', true);
+	$email = get_post_meta($post->ID, '_contact-email', true);
+	?>
+	<label for="contact-tel"><?php _e('Kontakt Telefon', 'xbrdr'); ?></label>
+		<input type="tel" class="rps contact-tel" name="contact-tel" value="<?php echo esc_attr($tel); ?>" />
+	<label for="contact-email"><?php _e('Kontakt Epost', 'xbrdr'); ?></label>
+		<input type="email" class="rps contact-email" name="contact-email" value="<?php echo esc_attr($email); ?>" />
 	<?php
 }
 
@@ -496,6 +543,18 @@ function rps_save_custom_meta() {
 	if (isset($_POST['commitee-role'])) {
 		$clean = sanitize_text_field($_POST['commitee-role']);
 		update_post_meta($post->ID, '_commitee-role', $clean);
+	}
+	if (isset($_POST['contact-tel'])) {
+		$clean = sanitize_text_field($_POST['contact-tel']);
+		update_post_meta($post->ID, '_contact-tel', $clean);
+	}
+	if (isset($_POST['contact-email'])) {
+		$clean = sanitize_email($_POST['contact-email']);
+		update_post_meta($post->ID, '_contact-email', $clean);
+	}
+	if (isset($_POST['contact-role'])) {
+		$clean = sanitize_text_field($_POST['contact-role']);
+		update_post_meta($post->ID, '_contact-role', $clean);
 	}
 
 }
