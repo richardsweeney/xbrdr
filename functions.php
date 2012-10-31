@@ -574,6 +574,78 @@ function rps_get_product_information() {
 	}
 }
 
+
+/** Get contact information + sorty by role */
+function rps_get_contact_people() {
+	global $post;
+  $args = array(
+    'post_type' => 'contact',
+    'posts_per_page' => -1,
+  );
+  $contactsByRole = array();
+  $query = new WP_Query($args);
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $role = get_post_meta($post->ID, '_contact-role', true);
+      // $sameRole = ($prevRole == $role) ? true : false;
+      $contactsByRole[$role][] = array(
+        'ID' 		=> $post->ID,
+        'name' 	=> get_the_title(),
+        'tel' 	=> get_post_meta($post->ID, '_contact-tel', true),
+        'email' => get_post_meta($post->ID, '_contact-email', true),
+        'role' 	=> get_post_meta($post->ID, '_contact-role', true),
+      );
+    }
+  }
+  foreach ($contactsByRole as $contactRoles): ?>
+    <div class="span2">
+      <?php if (count($contactRoles) == 1): ?>
+        <?php foreach ($contactRoles as $person): ?>
+        <p>
+          <strong><?php echo $person['role']; ?></strong><br>
+          <?php echo $person['name']; ?><br>
+          <a href="mailto:<?php echo esc_attr($person['email']); ?>"><?php echo $person['email']; ?></a><br>
+          <?php echo $person['tel']; ?><br>
+        <p>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p><strong><?php echo $contactRoles[0]['role']; ?></strong><br>
+        <?php foreach ($contactRoles as $person): ?>
+          <?php echo $person['name']; ?><br>
+          <?php if (!empty($person['email'])): ?>
+          	<a href="mailto:<?php echo esc_attr($person['email']); ?>"><?php echo $person['email']; ?></a><br>
+          <?php endif; ?>
+          <?php if (!empty($person['tel'])): ?>
+          	<?php echo $person['tel']; ?><br>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </div>
+  <?php endforeach;
+}
+
+
+
+function get_repeater_field_images() {
+	global $post;
+	$fields = get_field('bilder');
+	?>
+	<div class="row-fluid left-margin-imgs spaceme image-repeater-container">
+		<?php foreach ($fields as $field): ?>
+		<div class="span6">
+			<h3><a href="<?php echo esc_attr($field['sida']); ?>"><?php echo $field['titel']; ?></a></h3>
+			<div class="image-border-container">
+				<a href="<?php echo esc_attr($field['sida']); ?>">
+					<img src="<?php echo esc_attr($field['bild']); ?>" alt="<?php echo esc_attr($field['titel']); ?>" />
+				</a>
+			</div>
+		</div>
+		<?php endforeach; ?>
+	</div>
+<?php
+}
+
 /** Footer Widget - show a language switcher in the header */
 // class Logo_Widget extends WP_Widget {
 
