@@ -17,6 +17,7 @@ class RPS_CreateCustomPostType {
     $this->pluralName = ( $nameArray['pluralName'] == null ) ? $nameArray['singularName'] : $nameArray['pluralName'];
     $this->slug = ( $nameArray['slug'] == null ) ? $nameArray['cptName'] : $nameArray['slug'];
     $this->supports = ( $nameArray['supports'] != null ) ? $nameArray['supports'] : array('title', 'editor', 'thumbnail');
+    $this->menuName = ( $nameArray['menuName'] != null ) ? $nameArray['menuName'] : $this->pluralName;
   }
 
   public function createPostType(){
@@ -31,14 +32,15 @@ class RPS_CreateCustomPostType {
         'view_item' => sprintf( __( 'Kolla %s', 'xbrdr'), $this->singularName ),
         'search_items' => sprintf( __( 'Sök %s', 'xbrdr'), ucfirst($this->pluralName) ),
         'not_found' =>  sprintf( __( 'Inga %s hittades', 'xbrdr'), $this->pluralName ),
-        'not_found_in_trash' => sprintf( __( 'Inga %s hittades i soptunnan!', 'xbrdr' ), $this->pluralName)
+        'not_found_in_trash' => sprintf( __( 'Inga %s hittades i soptunnan!', 'xbrdr' ), $this->pluralName),
+        'menu_name' => ucfirst( $this->menuName ),
       ),
       'hierarchical' => $this->hierarchicalPost,
       'public' => true,
       'rewrite' => array( 'slug' => $this->slug ),
       'query_var' => true,
       'supports' => $this->supports,
-      'menu_position' => $this->menuPos
+      'menu_position' => $this->menuPos,
     );
     register_post_type( $this->cptName, $cptArgs );
   }
