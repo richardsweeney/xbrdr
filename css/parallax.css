@@ -1,0 +1,539 @@
+
+
+/**/
+
+.container {
+  position: relative;
+}
+
+#mobile-nav-trigger {
+  display: none;
+}
+#news-bar a, #news-bar span {
+  text-shadow: 0px 1px 1px #9397a0;
+}
+
+/*.navbar-fixed-top {
+  position: fixed !important;
+}*/
+
+#chapter-nav{position:absolute; right:20px; top:170px; width:18px;}
+#chapter-nav li{float:left; width:100%; padding:0 0 5px; font-size:11px; line-height:18px; }
+#chapter-nav a{float:left; width:100%; height:18px; background:#d6dbe6; color:#fff; text-align:center; position:relative;}
+#chapter-nav a span{color:#999; position:absolute; width:150px; left:-162px; top:0; text-align:right; display:none; font-weight:bold;}
+#chapter-nav a:hover, #chapter-nav li.current a{background:#adb8cd;}
+#chapter-nav a:hover span, #chapter-nav li.current a span{display:block;}
+#chapter-nav a {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  behavior: url("PIE.htc");
+}
+
+.container {
+  width: auto;
+  height: auto !important;
+}
+.visible {
+  background: #fff;
+  height: auto;
+  display: block;
+}
+
+.navbar .btn-navbar {
+  background: #76b729;
+  background: -moz-linear-gradient(top, #76b729 0%, #76b729 77%, #98c95f 78%, #98c95f 79%, #649b23 80%, #649b23 100%, #75b529 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b729), color-stop(77%, #76b729), color-stop(78%, #98c95f), color-stop(79%, #98c95f), color-stop(80%, #649b23), color-stop(100%, #649b23), color-stop(100%, #75b529));
+  background: -webkit-linear-gradient(top, #76b729 0%, #76b729 77%, #98c95f 78%, #98c95f 79%, #649b23 80%, #649b23 100%, #75b529 100%);
+  background: -o-linear-gradient(top, #76b729 0%, #76b729 77%, #98c95f 78%, #98c95f 79%, #649b23 80%, #649b23 100%, #75b529 100%);
+  background: -ms-linear-gradient(top, #76b729 0%, #76b729 77%, #98c95f 78%, #98c95f 79%, #649b23 80%, #649b23 100%, #75b529 100%);
+  background: linear-gradient(to bottom, #76b729 0%, #76b729 77%, #98c95f 78%, #98c95f 79%, #649b23 80%, #649b23 100%, #75b529 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76b729', endColorstr='#75b529', GradientType=0 );
+  color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1) inset, 0px 1px 0px rgba(255, 255, 255, 0.075);
+}
+
+
+#news-bar {
+  position: absolute;
+  background: #ced5e1 url(../images/news-bg.gif) repeat-x 0 0;
+  font-weight: bold;
+  line-height: 17px;
+  color: #fff;
+  padding: 7px 11px 4px;
+  top: 90px;
+  left: 20px;
+  z-index: 10;
+}
+#news-bar span {
+  float: left;
+  font-size: 10px;
+  line-height: 20px;
+  padding-right: 6px;
+}
+#news-bar a {
+  float: left;
+  color: #fff;
+  padding: 0 25px 3px 0;
+  background: url(../images/news-arrow.png) no-repeat 99% 50%;
+  -webkit-transition: background-position 0.2s ease-out;
+  -moz-transition: background-position 0.2s ease-out;
+  -o-transition: background-position 0.2s ease-out;
+  -ms-transition: background-position 0.2s ease-out;
+  transition: background-position 0.2s ease-out;
+}
+#news-bar a:hover{
+  text-decoration: underline;
+  background-position: 100% 50%;
+}
+#news-bar{
+  -webkit-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}
+
+/* NEWSFLASH */
+
+.icon-arrow-right {
+  background: url(../images/arrow_right.png);
+  width: 12px;
+  height: 15px;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+.thumbnail {
+  border: none 0px;
+  padding: 0px;
+  border-radius: 0px;
+  transition: none;
+  box-shadow: none;
+}
+
+
+#menu-primara-lankar li {
+  display: block;
+  float: left;
+}
+
+.scroll-arrow{position:fixed; font-size:12px; line-height:14px; font-weight:bold; color:#75b72b; top:500px; left:50%; width:50px; text-align:center; background:url(../images/scroll.png) no-repeat 100% 100%; padding:0 70px 70px 0; z-index:999; margin-left:-200px;}
+.heading-1, .heading-2, .heading-3{font-size:32px; color:#76b729; font-weight: bold;}
+.heading-1 { line-height: 1.2;}
+h2.heading-2{font-size:24px; line-height: 1.3; margin-bottom: 3px;}
+.heading-3{font-size:16px; padding:15px 0 0 0;}
+.text-content p{padding:5px 0 0 0;}
+.text-content address{padding:10px 0 0 0; font-size:13px; font-style:normal;}
+.text-content address a{text-decoration:underline;}
+.text-content address a:hover{text-decoration:none;}
+
+
+.icons li {
+  list-style: none;
+}
+.icons a {
+  position: absolute;
+  display: block;
+  width: 200px;
+  background: url(../images/icon.png) no-repeat 50% 0%;
+  padding: 50px 10px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  color: #4e699b;
+}
+
+.icons a:hover {
+  text-decoration: none;
+}
+
+.pointer{position:absolute; top:0px; left:0; height:1px; width:1px; visibility:hidden;}
+.map-block img{display:block; max-width: 100%;}
+
+
+.text-content {
+  width: 300px;
+  z-inxdex: 1000;
+}
+
+.right-aligned-text {
+  position: fixed;
+  left: 50%;
+  margin-left: 20px;
+}
+.right-aligned-text#chapter3-text {
+  padding-top: 30px;
+}
+
+.section-text.gom {
+  opacity: 0;
+}
+.secion-text.visa {
+  opacity: 1;
+  top: 200px;
+}
+
+.chapter {
+  position: relative;
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.right-content {
+  height: 550px;
+}
+
+.image-container {
+  postion: absolute;
+  left: 330px;
+  z-index: 5;
+  width: 500px;
+}
+
+.tranisiton-opacity,
+.icons {
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+}
+
+.image-with-pointers {
+  position: fixed;
+  top: 200px;
+  z-index: 10;
+  max-width: 100%;
+  -webkit-transition: opacity 0.6s ease-in-out;
+  -moz-transition: opacity 0.6s ease-in-out;
+  -o-transition: opacity 0.6s ease-in-out;
+  -ms-transition: opacity 0.6s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
+}
+.image-with-pointers.gom {
+  opacity: 0;
+  top: -500px;
+}
+.image-with-pointers.visa {
+  opacity: 1;
+}
+
+.icons {
+  position: fixed;
+  left: 50%;
+  margin-left: -505px;
+  z-index: 1000;
+}
+.icons.gom {
+  opacity: 0;
+}
+.icons.gom.group-1,
+.icons.gom.group-4 {
+  top: -200px;
+}
+.icons.gom.group-2,
+.icons.gom.group-3 {
+  top: 1200px;
+}
+.icons.visa {
+  top: 300px;
+  opacity: 1;
+}
+
+
+/** Block one */
+
+#chapter1-block {
+  height: 800px;
+  overflow: show;
+}
+
+ul#unbuild {
+  list-style: none;
+}
+
+ul#unbuild img {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  margin-left: -130px;
+}
+ul#unbuild img.gom {
+  display: none;
+}
+
+#chapter1-text {
+  position: fixed;
+  top: 150px;
+  background: url(../images/loader.gif) no-repeat center;
+}
+#chapter1-text.loaded {
+  background: none;
+}
+#chapter1-text h1 {
+  width: 370px;
+}
+#chapter1-text.gom {
+  opacity: 0;
+}
+#chapter1-text.visa {
+  opacity: 1;
+}
+
+img#img-16.gom {
+  opacity: 0;
+}
+img#img-16.visa {
+  opacity: 1;
+}
+
+
+/** Chapter two */
+
+#chapter-2-special-img {
+  display: none;
+}
+
+#chapter2-block {
+  top: 0;
+  height: 300px;
+}
+
+#chapter2-text {
+  position: fixed
+}
+#chapter2-text.gom {
+  opacity: 0;
+}
+#chapter2-text.visa {
+  top: 200px;
+  opacity: 1;
+}
+
+.chapter2-icons-container .icons {
+  margin-left: 0;
+}
+
+li.i-1 a {
+  left: -200px;
+  top: 0;
+  background-image: url(../images/icons/icon_60x60_slitstark.png);
+}
+li.i-2 a {
+  left: -150px;
+  top: -130px;
+  background-image: url(../images/icons/icon_60x60_latt.png);
+}
+li.i-3 a {
+  left: -70px;
+  top: -50px;
+  background-image: url(../images/icons/icon_60x60_anpassningsbar.png);
+}
+li.i-4 a {
+  left: 40px;
+  top: -155px;
+  background-image: url(../images/icons/icon_60x60_brandsaker.png);
+}
+li.i-5 a {
+  left: 50px;
+  top: -10px;
+  background-image: url(../images/icons/icon_60x60_vaderbestandig.png);
+}
+li.i-6 a {
+  left: 150px;
+  top: -100px;
+  background-image: url(../images/icons/icon_60x60_temperaturoberoende.png);
+}
+li.i-7 a {
+  left: 200px;
+  top: 15px;
+  background-image: url(../images/icons/icon_60x60_resistent_mot_olja_och_kemikalier.png);
+}
+li.i-8 a {
+  left: -200px;
+  top: 180px;
+  background-image: url(../images/icons/icon_60x60_ergonomisk.png);
+}
+li.i-9 a {
+  left: -140px;
+  top: 260px;
+  background-image: url(../images/icons/icon_60x60_insektsfri.png);
+}
+li.i-10 a {
+  left: -50px;
+  top: 235px;
+  background-image: url(../images/icons/icon_60x60_hygienisk.png);
+}
+li.i-11 a {
+  left: 70px;
+  top: 210px;
+  background-image: url(../images/icons/icon_60x60_absorberar_inte_olja.png);
+}
+li.i-12 a {
+  left: 200px;
+  top: 160px;
+  background-image: url(../images/icons/icon_60x60_atervinningsbar.png);
+}
+
+
+/** Chapter three */
+
+#chapter3-text.visa {
+  top: 200px;
+}
+
+li.i-13 a {
+  left: 0px;
+  top: -130px;
+  background-image: url(../images/icons/icon_60x60_lag_livscykelkostnad.png);
+}
+li.i-14 a {
+  left: 110px;
+  top: -155px;
+  background-image: url(../images/icons/icon_60x60_utbytbara_detaljer.png);
+}
+li.i-15 a {
+  left: 275px;
+  top: -135px;
+  background-image: url(../images/icons/icon_60x60_slitstark.png);
+}
+li.i-16 a {
+  left: 345px;
+  top: -60px;
+  background-image: url(../images/icons/icon_60x60_oberoende_av_mattstandard.png);
+}
+li.i-17 a {
+  left: 20px;
+  top: 220px;
+  background-image: url(../images/icons/icon_60x60_brandsaker.png);
+}
+li.i-18 a {
+  left: 160px;
+  top: 200px;
+  background-image: url(../images/icons/icon_60x60_atervinningsbar.png);
+}
+li.i-19 a {
+  left: 290px;
+  top: 180px;
+  background-image: url(../images/icons/icon_60x60_ergonomisk.png);
+}
+
+/** Chapter 4 */
+
+#chapter4-text.visa {
+  top: 270px;
+}
+
+li.i-20 a {
+  left: -20px;
+  top: 5px;
+  background-image: url(../images/icons/icon_60x60_latt.png);
+}
+li.i-21 a {
+  left: 80px;
+  top: -60px;
+  background-image: url(../images/icons/icon_60x60_greppvanlig.png);
+}
+li.i-22 a {
+  left: 250px;
+  top: -100px;
+  background-image: url(../images/icons/icon_60x60_dammar_ej.png);
+}
+li.i-23 a {
+  left: 330px;
+  top: -20px;
+  background-image: url(../images/icons/icon_60x60_damm_flis_och_spagfri.png);
+}
+li.i-24 a {
+  left: 210px;
+  top: 190px;
+  background-image: url(../images/icons/icon_60x60_spikar_och_skruvar.png);
+
+}
+
+
+/** Chapter 5 */
+
+#chapter5-text.visa {
+  top: 250px;
+  opacity: 1;
+}
+
+li.i-25 a {
+  left: 50px;
+  top: -100px;
+  background-image: url(../images/icons/icon_60x60_hallbar.png);
+}
+li.i-26 a {
+  left: 170px;
+  top: -70px;
+  background-image: url(../images/icons/icon_60x60_motstandskraftig.png);
+}
+li.i-27 a {
+  left: 310px;
+  top: -55px;
+  background-image: url(../images/icons/icon_60x60_atervinningsbar.png);
+}
+li.i-28 a {
+  left: 230px;
+  top: 190px;
+  background-image: url(../images/icons/icon_60x60_rent_vardefullt_stalskrot.png);
+}
+
+
+
+/** Chapter 6 */
+
+#chapter6-block {
+  position: relative;
+  min-height: 500px;
+}
+#chapter6-text {
+  position: fixed;
+  top: 0;
+  width: 220px;
+}
+
+iframe {
+  width: 300px;
+  height: 295px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.laning-page.map-block {
+  position: fixed;
+  top: 160px;
+  left: 50%;
+  margin: 50px 0 0 -200px;
+  width: 450px;
+  height: 300px;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+iframe#maps-iframe {
+  margin-top: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+
+.thumbnail {
+  border:none 0px;
+  padding:0px;
+  border-radius: 0px;
+  transition:none;
+  box-shadow:none;
+}
+
+strong { color:#76b729; }
+
+#page,
+.navbar-white .navbar-inner .container {
+  min-width: 960px;
+}
+
