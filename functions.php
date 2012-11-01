@@ -721,6 +721,28 @@ function rps_nicer_excerpt($args = array()) {
 }
 
 
+/** Add an ingress shortcode + add TimyMCE button */
+function rps_ingress( $atts, $content = null ) {
+	return "<p class='ingress'>$content</p>";
+}
+add_shortcode('ingress', 'rps_ingress');
+
+function rps_add_button_to_tiny_mce() {
+  if ( current_user_can('edit_posts') &&  current_user_can('edit_pages') ) {
+    add_filter('mce_external_plugins', 'rps_add_plugin');
+    add_filter('mce_buttons', 'rps_register_button');
+  }
+}
+function rps_register_button($buttons) {
+   $buttons[] = 'ingress';
+   return $buttons;
+}
+function rps_add_plugin($plugin_array) {
+   $plugin_array['ingress'] = JS . '/tinymce_plugin/editor_plugin_src.js';
+   return $plugin_array;
+}
+add_action('init', 'rps_add_button_to_tiny_mce');
+
 
 /** Change crop point for cropped images */
 function rps_image_resize_dimensions($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop) {
