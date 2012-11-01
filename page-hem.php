@@ -6,6 +6,15 @@
 
     <!--    Chapter 1    -->
 
+    <?php
+      $args = array('post_type' => 'front_push', 'posts_per_page' => 1);
+      $query = new WP_Query($args);
+      $pushes = array();
+      while ($query->have_posts()): $query->the_post();
+        $pushes = get_field('push_repeater');
+      endwhile;
+    ?>
+
     <section id="chapter1-block" class="chapter">
       <span id="chapter1" class="pointer"></span>
 
@@ -14,8 +23,8 @@
       </ul>
 
       <article class="gom text-content section-text" id="chapter1-text">
-        <h1 class="heading-1">Pallen utan kompromisser</h1>
-        <p>Den som kan f&ouml;rflytta och skydda gods p&aring; ett effektivt s&auml;tt skapar viktiga konkurrensf&ouml;rdelar. Logistik &auml;r en nyckel till l&ouml;nsamhet, kvalitet och omsorg om milj&ouml;n. Men det &auml;r ocks&aring; en v&auml;rld fylld av kompromisser. Den v&auml;rlden t&auml;nker vi f&ouml;r&auml;ndra. Vi b&ouml;rjar med lastpallen, sj&auml;lva grunden f&ouml;r n&auml;stan alla transporter.</p>
+        <h1 class="heading-1"><?php echo $pushes[0]['titel']; ?></h1>
+        <?php echo $pushes[0]['text']; ?>
       </article>
 
     </section>
@@ -58,8 +67,8 @@
       </div>
 
       <article class="gom text-content section-text" id="chapter2-text">
-        <h2 class="heading-2">Egenskaperna <br />som g&ouml;r skillnad</h2>
-        <p>CrossBorder XP1 &auml;r en lastpall f&ouml;r framtiden, byggd i galvaniserad, h&ouml;gh&aring;llfast tunnpl&aring;t av st&aring;l och utvecklad med en epokg&ouml;rande och bepr&ouml;vad teknik h&auml;mtad fr&aring;n bilindustrin. Tack vare pallens l&aring;ga vikt och modularitet &auml;r den enkel att anpassa till de flesta till&auml;mpningar och anv&auml;ndningsomr&aring;den.</p>
+        <h2 class="heading-2"><?php echo $pushes[1]['titel']; ?></h2>
+        <?php echo $pushes[1]['text']; ?>
       </article>
 
     </section>
@@ -98,8 +107,8 @@
       </div>
 
       <article class="gom text-content right-aligned-text section-text" id="chapter3-text">
-        <h2 class="heading-2">Lastpall med stora v&auml;rden</h2>
-        <p>CrossBorder XP1 erbjuder l&aring;g livscykelkostnad genom god funktion och l&aring;ng livsl&auml;ngd. Galvaniserat st&aring;l p&aring;verkas obetydligt av v&auml;der och vind, och pallen beh&ouml;ver d&auml;rmed inte lagras inomhus. Den &auml;r ocks&aring; brands&auml;ker, vilket ger l&auml;gre f&ouml;rs&auml;kringspremier och m&ouml;jlighet att utnyttja en st&ouml;rre lageryta &auml;n med tr&auml;- och plastpallar utan att bryta mot brandskyddsregler. St&aring;let beh&aring;ller ocks&aring; sina egenskaper oberoende av temperatur.</p>
+        <h2 class="heading-2"><?php echo $pushes[2]['titel']; ?></h2>
+        <?php echo $pushes[2]['text']; ?>
       </article>
 
     </section>
@@ -133,8 +142,8 @@
       </div>
 
       <article class="gom text-content right-aligned-text section-text" id="chapter4-text">
-        <h2 class="heading-2">S&auml;krare arbetsmilj&ouml; med<br/>mindre risk f&ouml;r skador</h2>
-        <p>CrossBorder XP1 &auml;r en greppv&auml;nlig och l&auml;tt lastpall. Det g&ouml;r hanteringen enklare och mindre riskfylld. XP1 bidrar till f&auml;rre belastnings- och f&ouml;rslitningsskador i rygg, nacke och armar. Med denna slitstarka pall slipper man dessutom b&aring;de tr&auml;damm i luften och risker f&ouml;r skador orsakade av flisor och utstickande spikar.</p>
+        <h2 class="heading-2"><?php echo $pushes[3]['titel']; ?></h2>
+        <?php echo $pushes[3]['text']; ?>
       </article>
 
     </section>
@@ -166,8 +175,8 @@
       </div>
 
       <article class="gom text-content right-aligned-text section-text" id="chapter5-text">
-        <h2 class="heading-2">B&auml;ttre f&ouml;r milj&ouml;n</h2>
-        <p>Anv&auml;ndningen av CrossBorder XP1 inneb&auml;r l&aring;g milj&ouml;belastning, hela v&auml;gen fr&aring;n tillverkning till &aring;tervinning. Materialet &auml;r h&aring;llbart och motst&aring;ndskraftigt. L&aring;g vikt och smart design minskar koldioxidutsl&auml;ppen vid transporterna. N&auml;r XP1 till sist ska skrotas &auml;r den helt &aring;tervinningsbar. Till och med som skrot har en pall fr&aring;n CrossBorder ett ekonomiskt v&auml;rde &ndash; som r&aring;vara f&ouml;r produktion av nytt st&aring;l.</p>
+        <h2 class="heading-2"><?php echo $pushes[4]['titel']; ?></h2>
+        <?php echo $pushes[4]['text']; ?>
       </article>
 
     </section>
@@ -180,18 +189,8 @@
       <span id="chapter6" class="pointer"></span>
 
       <article class="gom text-content section-text" id="chapter6-text">
-        <h2 class="heading-2">Prata med oss.</h2>
-        <p>Vi &auml;r stolta &ouml;ver XP1. D&auml;rf&ouml;r vill vi g&auml;rna ber&auml;tta mer f&ouml;r dig om hur du kan dra nytta av f&ouml;rdelarna. Du kan ocks&aring; l&auml;sa mer om dem direkt p&aring; <a href="http://<?php echo URL; ?>/produkter/xp1/">v&aring;ra produktsidor</a>.</p>
-        <h3 class="heading-3">Kontakta oss</h3>
-        <address>
-          CrossBorder<br />
-          Sj&ouml;viksv&auml;gen 2<br />
-          231 62 Trelleborg<br />
-          Sweden<br />
-          <br />
-          Telefon: +46 410 35 35 90<br />
-          Epost: <a href="mailto:info@xbrdr.com">info@xbrdr.com</a>
-        </address>
+        <h2 class="heading-2"><?php echo $pushes[5]['titel']; ?></h2>
+        <?php echo $pushes[5]['text']; ?>
       </article>
 
       <div class="laning-page map-block" id="chapter6-map">
