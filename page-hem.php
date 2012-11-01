@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-  <div class="container chapters-container">
+  <div class="container chapters-container" id="page">
 
     <span class="scroll-arrow" title="Skrolla f&ouml;r att forts&auml;tta">Skrolla f&ouml;r att forts&auml;tta</span>
 

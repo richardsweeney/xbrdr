@@ -282,7 +282,7 @@ function rps_print_parallax_navigation() {
 ?>
   <ul id="chapter-nav" class="meun">
     <li data-depth="0"><a href="#chapter1" title="XP1 - pallen som har allt"><span>Pallen utan kompromisser</span></a></li>
-    <li data-depth="601"><a href="#chapter2" title="Unika egenskaper"><span>Unika egenskaper</span></a></li>
+    <li data-depth="701"><a href="#chapter2" title="Unika egenskaper"><span>Unika egenskaper</span></a></li>
     <li data-depth="1000"><a href="#chapter3" title="En l&ouml;nsam investering"><span>En l&ouml;nsam investering</span></a></li>
     <li data-depth="1400"><a href="#chapter4" title="Pallen och m&auml;nniskan"><span>Pallen och m&auml;nniskan</span></a></li>
     <li data-depth="1800"><a href="#chapter5" title="En h&aring;llbar framtid"><span>En h&aring;llbar framtid</span></a></li>
