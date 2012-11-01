@@ -1,0 +1,29 @@
+.inside {
+  padding: 20px 0;
+}
+
+.inside label {
+  display: block;
+  font-weight: bold;
+  margin: 15px 0 5px 3px;
+}
+
+.inside input[type="text"],
+.inside input[type="email"],
+.inside input[type="number"],
+.inside input[type="tel"] {
+  width: 450px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.inside input[type="number"] {
+  width: 225px;
+}
+
+.inside textarea {
+  width: 450px;
+  height: 150px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
