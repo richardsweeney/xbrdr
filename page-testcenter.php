@@ -14,9 +14,7 @@
   <div class="row-fluid introtext">
     <div class="span12">
       <h1 class="down"><?php the_title(); ?></h1>
-      <div class="lead">
-        <?php the_content(); ?>
-      </div>
+      <?php the_content(); ?>
     </div>
   </div>
   <div class="row-fluid spaceme">

@@ -342,13 +342,6 @@
     <div class="tab-pane" id="spec">
       <div class="row-fluid spaceme">
         <div class="span12">
-          <!--
-          <p class="lead">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id commodo turpis.
-          Sed in elit erat. Duis dui sapien, vestibulum sit amet placerat quis. Consectetur adipiscing elit. Vivamus id commodo turpis.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
-          -->
         </div>
       </div>
       <div class="row-fluid">

@@ -10,17 +10,19 @@
       $role = get_post_meta($post->ID, '_commitee-role', true);
       $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
       ?>
-      <?php if (($i % 4) == 0) echo '<div class="row-fluid">'; ?>
+      <?php if ($i == 4 || $i == 7 || $i == 10) echo '<div class="row-fluid">'; ?>
         <div class="span4 well boardmember">
-          <div class="thumbnail">
-            <img src="<?php echo $image[0]; ?>" alt="<?php esc_attr(the_title()); ?>" />
-          </div>
+          <?php if (has_post_thumbnail()): ?>
+            <div class="thumbnail">
+              <img src="<?php echo $image[0]; ?>" alt="<?php esc_attr(the_title()); ?>" />
+            </div>
+          <?php endif; ?>
           <?php the_title('<h3>','</h3>'); ?>
           <h5><?php _e('Född', 'xbrdr'); ?> <?php echo $dob; ?></h5>
           <h5><?php echo $role; ?></h5>
           <?php the_content(); ?>
         </div>
-      <?php if (($i % 4) == 0) echo '</div>'; ?>
+      <?php if (($i % 3) == 0) echo '</div> <!-- end row -->'; ?>
     <?php $i++; endwhile; ?>
   </div>
 </div>

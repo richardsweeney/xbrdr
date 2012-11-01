@@ -8,7 +8,7 @@
     while($query->have_posts()): $query->the_post();
       $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
       ?>
-      <?php if (($i % 4) == 0) echo '<div class="row-fluid">'; ?>
+      <?php if ($i == 4 || $i == 7 || $i == 10) echo '<div class="row-fluid">'; ?>
         <div class="span4 well boardmember">
           <div class="thumbnail">
             <img src="<?php echo $image[0]; ?>" alt="<?php esc_attr(the_title()); ?>" />
@@ -16,7 +16,7 @@
           <?php the_title('<h3>','</h3>'); ?>
           <?php the_content(); ?>
         </div>
-      <?php if (($i % 4) == 0) echo '</div>'; ?>
+      <?php if (($i % 3) == 0) echo '</div>'; ?>
     <?php $i++; endwhile; ?>
   </div>
 </div>

@@ -25,8 +25,10 @@
       <div class="span9" id="news-column">
       <?php while (have_posts()): the_post(); ?>
         <article class="single-news-item">
-          <h1><?php the_title(); ?></h1>
-          <strong><?php the_time('j F, Y'); ?></strong>
+          <header>
+            <h1><?php the_title(); ?></h1>
+            <time datetime="<?php the_time('Y-m-d'); ?>"><strong><?php the_time('j F, Y'); ?></strong></time>
+          </header>
           <?php the_content(); ?>
         </article>
       <?php endwhile; wp_reset_query(); ?>

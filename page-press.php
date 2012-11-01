@@ -22,12 +22,16 @@
         $query = new WP_Query($args);
         while ($query->have_posts()): $query->the_post();
         ?>
-        <div class="news-item">
-          <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-          <strong><?php the_time('j F, Y'); ?></strong>
-          <?php $options = array('link' => false, 'words' => 60) ?>
-          <?php rps_nicer_excerpt($options); ?>
-        </div>
+        <article>
+          <div class="news-item">
+            <header>
+              <h1 class="news-item-header"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+              <time datetime="<?php the_time('Y-m-d'); ?>"><strong><?php the_time('j F, Y'); ?></strong></time>
+            </header>
+            <?php $options = array('link' => false, 'words' => 60) ?>
+            <?php rps_nicer_excerpt($options); ?>
+          </div>
+        </article>
       <?php endwhile; wp_reset_query(); ?>
       </div>
       <?php get_footer(); ?>

@@ -84,7 +84,7 @@
           </div>
           <?php $subheader = get_post_meta($post->ID, '_produkt-subheader', true); ?>
           <h2><?php echo $subheader; ?></h2>
-          <div class="lead margin-l-r content-container">
+          <div class="margin-l-r content-container">
             <?php the_content(); ?>
           </div>
         </div>
