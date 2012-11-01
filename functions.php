@@ -88,11 +88,12 @@ add_action('wp_dashboard_setup', 'rps_remove_dashboard_widgets' );
 function rps_enqueue_js_and_css() {
 
 	$jsglobals = array(
-		'templateDirectory'  => ROOT
+		'templateDirectory'  => ROOT,
+		'url'								 => URL,
 	);
 
 	// CSS
-	wp_register_style('main-css', CSS . '/main.css');
+	wp_register_style('parallax-css', CSS . '/parallax.css');
 	wp_register_style('bootstrap', CSS . '/bootstrap.css');
 	wp_register_style('bootstrap-responsive', CSS . '/bootstrap-responsive.css');
 	wp_register_style('styles', CSS . '/styles.css');
@@ -100,15 +101,14 @@ function rps_enqueue_js_and_css() {
 	wp_enqueue_style('bootstrap-responsive');
 	wp_enqueue_style('styles');
 	if (is_front_page()) {
-	  wp_enqueue_style('main-css');
+	  wp_enqueue_style('parallax-css');
 	}
-
 
   // JS
 	wp_enqueue_script('jquery');
 	if (is_front_page()) {
-		wp_enqueue_script('parallax', JS . '/custom.js');
-		wp_localize_script('parallax', 'jsGlobals', $jsglobals);
+		wp_enqueue_script('parallax-js', JS . '/parallax.js');
+		wp_localize_script('parallax-js', 'jsGlobals', $jsglobals);
 	} else {
 		wp_enqueue_script('bootstrap', JS . '/bootstrap.min.js');
 		wp_enqueue_script('global-main', JS . '/global/main.js');
@@ -119,6 +119,19 @@ function rps_enqueue_js_and_css() {
 	}
 }
 add_action('wp_enqueue_scripts', 'rps_enqueue_js_and_css');
+
+
+function rps_load_custom_wp_admin_style() {
+	$jsglobals = array(
+		'templateDirectory'  => ROOT,
+		'url'								 => URL,
+	);
+	wp_enqueue_script('rps-admin-js', JS . '/admin.js');
+  wp_register_style('rps-admin-css', CSS . '/admin.css', false, '1.0.0' );
+  wp_enqueue_style('rps-admin-css');
+	wp_localize_script('rps-admin-js', 'jsGlobals', $jsglobals);
+}
+add_action('admin_enqueue_scripts', 'rps_load_custom_wp_admin_style');
 
 
 /** Remove WP version from header */
@@ -326,6 +339,19 @@ function rps_print_breadcrumbs() {
 include_once('includes/Custom-post-type-class.php');
 
 /** Create custom post type objects */
+$cptArray = null;
+$cptArray = array(
+	'cptName' => 'front_push',
+	'singularName' => __('front push', 'xbrdr'),
+	'pluralName' => __('front pushes', 'xbrdr'),
+	'slug' => 'front-push',
+	'supports' => array('title'),
+);
+$push = new RPS_CreateCustomPostType($cptArray);
+add_action('init', array(&$push, 'createPostType'));
+
+/** Create custom post type objects */
+$cptArray = null;
 $cptArray = array(
 	'cptName' => 'product',
 	'singularName' => __('produkt', 'xbrdr'),
@@ -457,7 +483,8 @@ function rps_print_produkt_meta() {
 	$subheader = get_post_meta($post->ID, '_produkt-subheader', true);
 	$excerpt = get_post_meta($post->ID, '_produkt-excerpt', true);
  	?>
- 	<input type="text" class="rps produkt-subheader" name="produkt-subheader" placeholder="<?php esc_attr_e('Ange en underrubrik', 'xbrdr'); ?>" value="<?php echo esc_attr($subheader); ?>" />
+ 	<label for="produkt-subheader"><?php _e('Ange en underrubrik', 'xbrdr'); ?></label>
+ 	<input type="text" class="rps produkt-subheader" name="produkt-subheader" value="<?php echo esc_attr($subheader); ?>" />
  	<label for="produkt-excerpt"><?php _e('Lägg till ett utdrag till produkten som visas ut på alla produkt sidor', 'xbrdr'); ?></label>
  		<textarea class="rps produkt-excerpt" name="produkt-excerpt"><?php echo $excerpt; ?></textarea>
 	<?php
