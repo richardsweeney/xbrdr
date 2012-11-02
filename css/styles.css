@@ -93,7 +93,8 @@ ul.nav-tabs li.child-page a {
 	border: none;
 	box-shadow: none;
 }
-.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner {
 	box-shadow: none;
 	border: none;
 }
@@ -111,9 +112,8 @@ ul.nav-tabs li.child-page a {
 .navbar-white .nav > .child-page > a:hover,
 .navbar-white .nav > .child-page > a:focus,
 .navbar-white .nav li.child-page:hover a,
-.navbar-white .nav li.child-page:focus a
-{
-	background: #76b729; /* Old browsers */
+.navbar-white .nav li.child-page:focus a {
+	background: #76b729;
 	background: -moz-linear-gradient(top, #76b729 0%, #76b729 77%, #98c95f 78%, #98c95f 79%, #649b23 80%, #649b23 100%, #75b529 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b729), color-stop(77%, #76b729), color-stop(78%, #98c95f), color-stop(79%, #98c95f), color-stop(80%, #649b23), color-stop(100%, #649b23), color-stop(100%, #75b529));
 	background: -webkit-linear-gradient(top, #76b729 0%, #76b729 77%, #98c95f 78%, #98c95f 79%, #649b23 80%, #649b23 100%, #75b529 100%);
@@ -155,7 +155,7 @@ ul.nav-tabs li.child-page a {
 }
 .navbar-white .navbar-inner .container {
 	background-color: #ffffff;
-	height: 90px;
+	height: 90px !important;
 }
 .below-header {
 	height: 13px;
