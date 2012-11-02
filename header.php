@@ -8,7 +8,7 @@
 		<link rel="shortcut icon" href="<?php echo IMG; ?>/favicon.ico">
 		<meta name="description" content="" />
 		<meta name="author" content="Emma Larsson, ID kommunikation ab" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name ="viewport" content ="initial-scale=1.0 width=device-width">
 
 		<?php wp_head(); ?>
 
@@ -60,7 +60,7 @@
 					<a class="brand" href="<?php echo URL; ?>" title="CrossBorder">
 						<img src="<?php header_image(); ?>" alt="<?php echo bloginfo('name'); ?>" />
 					</a>
-					<div class="nav-collapse collapse">
+					<div class="nav-container nav-collapse collapse">
 						<?php rps_print_main_navigation() ?>
 					</div>
 

@@ -13,7 +13,7 @@
  */
 (function(b,c){var $=b.jQuery||b.Cowboy||(b.Cowboy={}),a;$.throttle=a=function(e,f,j,i){var h,d=0;if(typeof f!=="boolean"){i=j;j=f;f=c}function g(){var o=this,m=+new Date()-d,n=arguments;function l(){d=+new Date();j.apply(o,n)}function k(){h=c}if(i&&!h){l()}h&&clearTimeout(h);if(i===c&&m>e){l()}else{if(f!==true){h=setTimeout(i?k:l,i===c?e-m:e)}}}if($.guid){g.guid=j.guid=j.guid||$.guid++}return g};$.debounce=function(d,e,f){return f===c?a(d,e,false):a(d,f,e!==false)}})(this);
 
-var mobile;
+var mobile = null;
 // Modernizr.csstransitions = false; // for testing
 
 jQuery(function ($) {
@@ -22,18 +22,20 @@ jQuery(function ($) {
   if (Modernizr.csstransitions === false) {
     $('.gom').hide();
   }
-  if (mobile === true) {
-    var $navCollapse = $('.nav-collapse').removeClass('nav-collapse');
+  if (mobile) {
     $('head').append('<link rel="stylesheet" href="' + jsGlobals.templateDirectory + '/css/parallax.mob.css">');
     $('#chapter1-text').addClass('loaded');
-    $('#mobile-nav-toggle-switch').show();
-    $('#mobile-nav-toggle-switch').click(function () {
-      if ($navCollapse.hasClass('collapse')) {
-        $navCollapse.removeClass('collapse').addClass('visible');
-      } else {
-        $navCollapse.removeClass('visible').addClass('collapse');
-      }
-    });
+    if ($(window).width() < 500) {
+      var $navCollapse = $('.nav-collapse').removeClass('nav-collapse');
+      $('#mobile-nav-toggle-switch').show();
+      $('#mobile-nav-toggle-switch').click(function () {
+        if ($navCollapse.hasClass('collapse')) {
+          $navCollapse.removeClass('collapse').addClass('visible');
+        } else {
+          $navCollapse.removeClass('visible').addClass('collapse');
+        }
+      });
+    }
   }
   $('#chapter6-map').hide();
 });
@@ -77,7 +79,6 @@ jQuery(window).load(function () {
       secondPhase = false;
 
 	if (mobile) {
-
     var $icons = $('.icons li.unique').clone(),
         $mobileIconList = $('<ul id="mobile-icons-list" />');
 
@@ -189,7 +190,6 @@ jQuery(window).load(function () {
             $lastPall.show();
           }
         }
-        console.log(chapter);
         if (chapter != lastChapter) {
           scrollFadeOutNextPhase(chapter, scrollTop);
         }

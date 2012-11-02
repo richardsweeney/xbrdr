@@ -155,7 +155,7 @@ ul.nav-tabs li.child-page a {
 }
 .navbar-white .navbar-inner .container {
 	background-color: #ffffff;
-	height: 90px !important;
+	height: 90px;
 }
 .below-header {
 	height: 13px;
@@ -645,6 +645,7 @@ strong {
 		max-width: 100%;
 		width: auto !important;
 		display: inline-block;
+		padding: 5px;
 	}
 
 	.span6 .image-border-container {
@@ -837,4 +838,7 @@ strong {
 	.down, .shorter {
 		margin: 0px;
 	}
+	.navbar-white .navbar-inner .container {
+    height: auto !important;
+  }
 }
