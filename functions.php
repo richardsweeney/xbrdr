@@ -591,14 +591,42 @@ add_action('save_post', 'rps_save_custom_meta');
 /** Get product information for respective products */
 function rps_get_product_information() {
 	global $post;
-	switch($post->post_title) {
-		case 'XP1':
-			get_template_part('includes/xp1');
-			break;
-		case 'XS1':
-			get_template_part('includes/xs1');
-			break;
-	}
+  $properties = get_field('properties');
+  $specs = get_field('specification');
+  $i = 0;
+  if ($properties):
+    ?>
+    <div class="row-fluid egenskaper">
+      <div class="span12">
+        <div class="row-fluid spaceme">
+        <?php foreach ($properties as $property): ?>
+          <?php if (($i % 3) == 0): ?>
+          </div><div class="row-fluid spaceme">
+          <?php endif; ?>
+          <div class="span4 well property">
+            <span class="well-icon">
+              <img src="<?php echo $property['icon']; ?>" alt="<?php echo esc_attr($property['title']); ?>">
+            </span>
+            <h3 id="goto-<?php echo($i + 1); ?>">
+              <?php echo $property['titel']; ?>
+            </h3>
+            <?php echo $property['text']; ?>
+          </div>
+      <?php $i++; endforeach; ?>
+      </div>
+    </div>
+  <?php endif; ?>
+  </section>
+  <?php if ($specs): ?>
+  <section id="spec">
+    <div class="tab-pane row-fluid spaceme">
+      <div class="row-fluid span12">
+        <?php echo $specs; ?>
+      </div>
+    </div>
+  </section>
+  <?php
+  endif;
 }
 
 

@@ -55,23 +55,19 @@
   <div class="row-fluid introtabs producttabs">
     <div class="span12">
       <ul class="nav nav-tabs product-tab">
-        <?php if($post->post_title == 'XP1'): ?>
+        <?php if (get_field('specification')): ?>
           <li class="js">
-            <a href="#spec" title="" data-id="spec" data-toggle="tab">Specifikation</a>
-          </li>
-          <li class="js active">
-            <a href="#fordelar" title="" data-id="fordelar" data-toggle="tab">Fördelar</a>
-          </li>
-        <?php else: ?>
-          <li class="active padd-right">
-            <a href="#fordelar" title="" data-toggle="tab">Fördelar</a>
+            <a href="#spec" data-id="spec" data-toggle="tab">Specifikation</a>
           </li>
         <?php endif; ?>
+        <li class="active padd-right">
+          <a href="#fordelar" data-id="fordelar" data-toggle="tab">Fördelar</a>
+        </li>
       </ul>
     </div>
   </div>
-  <!-- tabs -->
 
+  <!-- tabs -->
   <div class="tab-content no-float show-hide-container">
   <!-- fordelar tab -->
     <section id="fordelar">
