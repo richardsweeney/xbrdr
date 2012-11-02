@@ -14,20 +14,20 @@
 (function(b,c){var $=b.jQuery||b.Cowboy||(b.Cowboy={}),a;$.throttle=a=function(e,f,j,i){var h,d=0;if(typeof f!=="boolean"){i=j;j=f;f=c}function g(){var o=this,m=+new Date()-d,n=arguments;function l(){d=+new Date();j.apply(o,n)}function k(){h=c}if(i&&!h){l()}h&&clearTimeout(h);if(i===c&&m>e){l()}else{if(f!==true){h=setTimeout(i?k:l,i===c?e-m:e)}}}if($.guid){g.guid=j.guid=j.guid||$.guid++}return g};$.debounce=function(d,e,f){return f===c?a(d,e,false):a(d,f,e!==false)}})(this);
 
 var mobile;
+// Modernizr.csstransitions = false; // for testing
 
 jQuery(function ($) {
-  mobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+  mobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
   // mobile = true; // for testing
   if (Modernizr.csstransitions === false) {
     $('.gom').hide();
   }
   if (mobile === true) {
+    var $navCollapse = $('.nav-collapse').removeClass('nav-collapse');
     $('head').append('<link rel="stylesheet" href="' + jsGlobals.templateDirectory + '/css/parallax.mob.css">');
     $('#chapter1-text').addClass('loaded');
-    // var $mainMenu = $('# ').hide();
-    var $navCollapse = $('.nav-collapse').removeClass('nav-collapse');
     $('#mobile-nav-toggle-switch').show();
-    $('#mobile-nav-toggle-switch').click(function() {
+    $('#mobile-nav-toggle-switch').click(function () {
       if ($navCollapse.hasClass('collapse')) {
         $navCollapse.removeClass('collapse').addClass('visible');
       } else {
@@ -44,6 +44,7 @@ jQuery(window).load(function () {
       $winHeight = $window.height(),
       increment = 35,
       throttle = 150,
+      lessThrottle = 300,
       $parallaxImageContainer = $('#unbuild'),
       $slideshowImages,
       $c1Text = $('#chapter1-text'),
@@ -62,25 +63,18 @@ jQuery(window).load(function () {
       $c6Content = $('#chapter6-text, #chapter6-map'),
       allContent = [$c1Content, $c2Content, $c3Content, $c4Content, $c5Content, $c6Content],
       allContentLength = allContent.length,
+      $scrollArrow = $('.scroll-arrow'),
+      $chapterNavLi = $('ul#chapter-nav li a'),
+      $lastPall,
+      $mapCanvas = $('#chapter6-map'),
+      lastChapter = 1,
+      chapterTwoBegins = 600,
       lastScrollTop = 0,
       lastPhase = 0,
       firstLoad = true,
       scrollPhase = 1,
-      $scrollArrow = $('.scroll-arrow'),
-      $chapterNavLi = $('ul#chapter-nav li a'),
-      $lastPall,
-      lastChapter = 1,
-      chapterTwoBegins = 600,
-      $mapCanvas = $('#chapter6-map'),
       iFrameLoaded = false,
-      initialWinWidth = $window.width(),
-      iFrame = '<iframe id="maps-iframe" width="450" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Sj%C3%B6viksv%C3%A4gen+2+231+62+Trelleborg&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=48.50801,57.919922&amp;ie=UTF8&amp;hq=&amp;hnear=Sj%C3%B6viksv%C3%A4gen+2,+231+62+Trelleborg,+Sweden&amp;ll=55.379552,13.123617&amp;spn=0.008558,0.02105&amp;t=m&amp;z=14&amp;output=embed"></iframe>';
-
-  // $window.bind('resize', $.throttle(throttle, true, function() {
-  //   if ($window.width() < initialWinWidth && $window.width() > 960) {
-
-  //   }
-  // }));
+      secondPhase = false;
 
 	if (mobile) {
 
@@ -93,7 +87,6 @@ jQuery(window).load(function () {
 
     $('.gom').removeClass('gom').addClass('visa').show();
     $mobileIconList.append($icons).appendTo($('#chapter2-block'));
-    // $mapCanvas.append(iFrame).fadeIn(300);
 
 	} else {
 
@@ -126,6 +119,11 @@ jQuery(window).load(function () {
           phase = Math.floor(scrollTop / increment);
 
       if (scrollTop < chapterTwoBegins) {
+        if (secondPhase === true) {
+          $window.unbind('scroll', scrollFadeOutFirstPhase);
+          $window.bind('scroll', $.throttle(throttle, true, scrollFadeOutFirstPhase));
+          secondPhase = false;
+        }
         $.each($chapterNavLi, function () {
           $(this).parent().removeClass('current');
         });
@@ -163,6 +161,11 @@ jQuery(window).load(function () {
           }
         }
       } else {
+        if (secondPhase === false) {
+          $window.unbind('scroll', scrollFadeOutFirstPhase);
+          $window.bind('scroll', $.throttle(lessThrottle, true, scrollFadeOutFirstPhase));
+          secondPhase = true;
+        }
         $slideshowImages.removeClass('visa').addClass('gom');
         if (Modernizr.csstransitions === false) {
           $slideshowImages.hide();
@@ -186,7 +189,7 @@ jQuery(window).load(function () {
             $lastPall.show();
           }
         }
-
+        console.log(chapter);
         if (chapter != lastChapter) {
           scrollFadeOutNextPhase(chapter, scrollTop);
         }
@@ -216,7 +219,6 @@ jQuery(window).load(function () {
             $mapCanvas.fadeOut(200);
           }
 
-          // allContent[i].removeClass('gom').addClass('visa');
           $('#chapter' + j + '-image, .chapter' + j + '-icons-container ul').removeClass('gom').addClass('visa');
           if (j === 6) {
             $text
@@ -225,7 +227,7 @@ jQuery(window).load(function () {
               .css({ 'top': 1500, 'opacity': 0 })
               .animate({ 'top': topPosition, 'opacity': 1 }, 500);
             if (iFrameLoaded === false) {
-              $mapCanvas.append(iFrame).fadeIn(300);
+              $mapCanvas.fadeIn(300);
               iFrameLoaded = true;
             } else {
               $mapCanvas.fadeIn();

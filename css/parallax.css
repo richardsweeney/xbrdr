@@ -17,7 +17,7 @@
   position: fixed !important;
 }*/
 
-#chapter-nav{position:absolute; right:20px; top:170px; width:18px;}
+#chapter-nav{position:absolute; right:20px; top:170px; width:18px; list-style: none;}
 #chapter-nav li{float:left; width:100%; padding:0 0 5px; font-size:11px; line-height:18px; }
 #chapter-nav a{float:left; width:100%; height:18px; background:#d6dbe6; color:#fff; text-align:center; position:relative;}
 #chapter-nav a span{color:#999; position:absolute; width:150px; left:-162px; top:0; text-align:right; display:none; font-weight:bold;}
@@ -28,6 +28,9 @@
   -moz-border-radius: 50%;
   border-radius: 50%;
   behavior: url("PIE.htc");
+}
+#chapter-nav a:active {
+  outline: none;
 }
 
 .container {
@@ -508,8 +511,8 @@ img {
   top: 160px;
   left: 50%;
   margin: 50px 0 0 -200px;
-  width: 450px;
-  height: 300px;
+  width: 440px;
+  height: 295px;
   padding: 10px;
   border-radius: 3px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
