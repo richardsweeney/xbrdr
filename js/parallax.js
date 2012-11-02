@@ -17,7 +17,7 @@ var mobile;
 
 jQuery(function ($) {
   mobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-  mobile = true; // for testing
+  // mobile = true; // for testing
   if (Modernizr.csstransitions === false) {
     $('.gom').hide();
   }
